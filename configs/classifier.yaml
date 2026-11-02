@@ -1,0 +1,28 @@
+# AgroScan AI — Model & Training Configuration
+
+project:
+  name: "AgroScan AI"
+  seed: 42
+
+data:
+  root: "data/plantvillage"
+  image_size: [224, 224]
+  batch_size: 16
+  num_workers: 0
+
+model:
+  architecture: "resnet18"
+  pretrained: true
+  num_classes: 38
+  dropout: 0.3
+
+training:
+  epochs: 15
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  optimizer: "adamw"
+  early_stopping_patience: 4
+
+explainability:
+  target_layer: "layer4"
+  colormap: "jet"
