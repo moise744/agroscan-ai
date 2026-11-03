@@ -80,3 +80,7 @@ class PlantDiseaseClassifier(nn.Module):
         probs = torch.softmax(logits, dim=1)
 
         return {"logits": logits, "probs": probs, "features": features}
+
+
+# Compatibility alias — allows notebooks to use DiseaseClassifier
+DiseaseClassifier = PlantDiseaseClassifier

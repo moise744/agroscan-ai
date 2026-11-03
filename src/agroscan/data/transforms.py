@@ -3,9 +3,7 @@ from typing import Tuple
 from torchvision import transforms
 
 
-def get_agri_transforms(
-    image_size: Tuple[int, int] = (224, 224), is_training: bool = True
-) -> transforms.Compose:
+def get_agri_transforms(image_size: int = 224, is_training: bool = True):
     """Standard ImageNet preprocessing pipeline with leaf rotations for training."""
     mean = [0.485, 0.456, 0.406]
     std = [0.229, 0.224, 0.225]
@@ -26,3 +24,16 @@ def get_agri_transforms(
             transforms.ToTensor(),
             transforms.Normalize(mean=mean, std=std),
         ])
+
+
+# ---------------------------------------------------------------------------
+# Compatibility aliases used by notebooks and external code
+# ---------------------------------------------------------------------------
+def get_train_transforms(image_size: int = 224):
+    """Alias → get_agri_transforms(image_size, is_training=True)."""
+    return get_agri_transforms(image_size, is_training=True)
+
+
+def get_val_transforms(image_size: int = 224):
+    """Alias → get_agri_transforms(image_size, is_training=False)."""
+    return get_agri_transforms(image_size, is_training=False)
